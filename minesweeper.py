@@ -8,7 +8,6 @@ class Board():
     self.board = self.makeBoard(rows, columns, 0)
     self.placeBombs()
     self.view = self.makeBoard(rows, columns, ' ')
-    self.play()
 
   def play(self):
     playing = True
@@ -20,7 +19,7 @@ class Board():
         if not self.checkSpace(coordinates):
           self.render(self.board)
           print('Oops! You lose.')
-          return;
+          return
         self.render(self.view)
         coordinates = self.selectSpace('check')
       coordinates = self.selectSpace('flag')
