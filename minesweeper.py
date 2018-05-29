@@ -8,7 +8,6 @@ class Board():
     self.board = self.makeBoard(rows, columns, 0)
     self.placeBombs()
     self.view = self.makeBoard(rows, columns, ' ')
-    self.render(self.board)
     self.play()
 
   def play(self):
@@ -19,6 +18,7 @@ class Board():
       while coordinates:
         playing = True
         if not self.checkSpace(coordinates):
+          self.render(self.board)
           print('Oops! You lose.')
           return;
         self.render(self.view)
@@ -28,11 +28,23 @@ class Board():
         playing = True
         self.flagSpace(coordinates)
         self.render(self.view)
+        if self.numFlags == self.numBombs and self.checkWinner():
+          self.render(self.board)
+          print('You win!')
+          return
         coordinates = self.selectSpace('flag')
     keepPlaying = input('Keep playing? ')
     if keepPlaying.lower() == 'no' or len(keepPlaying) == 0:
       return;
     self.play()
+
+  def checkWinner(self):
+    for x, col in enumerate(self.board):
+      for y, row in enumerate(col):
+        if self.board[x][y] == 'B':
+          if self.view[x][y] != 'B':
+            return False
+    return True
 
   def flagSpace(self, coordinates):
     if self.view[coordinates[0]][coordinates[1]] == ' ':
@@ -100,7 +112,3 @@ class Board():
       for column in range(len(board)):
         renderRow.append(str(board[column][row]))
       print('|'.join(renderRow))
-
-
-myBoard = Board(10)
-   
