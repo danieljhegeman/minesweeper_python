@@ -17,7 +17,7 @@ To begin game:
 ```
 board.play()
 ```
-Choose spaces to uncover, where top left is 0,0 and top right is 2,3:
+Choose spaces to uncover, where top left is 0,0 and top right is 4,0:
 ```
 Enter row,column to check: 0,0
 2| | | | 
