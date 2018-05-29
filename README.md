@@ -11,7 +11,7 @@ Python >= 3.0
 Create a new game board:
 ```
 import minesweeper
-board = minesweeper.Board(3,4) # default columns=5, rows=5
+board = minesweeper.Board(columns=5,rows=5)
 ```
 To begin game:
 ```
